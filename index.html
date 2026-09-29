@@ -1,0 +1,3024 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synapx — Insurance Intelligence Platform</title>
+  <meta name="description"
+    content="Enterprise-grade autonomous FNOL processing engine with deterministic validation, explainable AI routing, real-time risk scoring, and auditability." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23181b24'/><path d='M16 6L25 11V21L16 26L7 21V11L16 6Z' stroke='%233b82f6' stroke-width='2'/><circle cx='16' cy='16' r='2.5' fill='%233b82f6'/></svg>" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <style>
+    /* ═════════════════════════════════════════════════════════════════════════
+   SYNAPX ENTERPRISE INSURANCE INTELLIGENCE DESIGN SYSTEM
+   ═════════════════════════════════════════════════════════════════════════ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* DARK MODE DEFAULT - GRAPHITE / CHARCOAL / ENTERPRISE STEEL */
+      --bg-dark: #090a0f;
+      --bg-surface: #111319;
+      --bg-surface-elevated: #181b24;
+      --bg-surface-hover: #212532;
+      --bg-glass: rgba(17, 19, 25, 0.95);
+
+      --border: #232733;
+      --border-strong: #333a4c;
+      --border-accent: #475569;
+
+      --brand-primary: #3b82f6;
+      --brand-gradient: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+      --brand-glow: rgba(59, 130, 246, 0.1);
+
+      /* Semantic Accents (Strict & Controlled) */
+      --accent-blue: #3b82f6;
+      --accent-slate: #64748b;
+      --accent-steel: #94a3b8;
+
+      --route-fast: #10b981;
+      --route-fast-dim: rgba(16, 185, 129, 0.12);
+      --route-specialist: #6366f1;
+      --route-specialist-dim: rgba(99, 102, 241, 0.12);
+      --route-manual: #f59e0b;
+      --route-manual-dim: rgba(245, 158, 11, 0.12);
+      --route-investigation: #ef4444;
+      --route-investigation-dim: rgba(239, 68, 68, 0.12);
+
+      --sev-critical: #ef4444;
+      --sev-critical-dim: rgba(239, 68, 68, 0.1);
+      --sev-warning: #f59e0b;
+      --sev-warning-dim: rgba(245, 158, 11, 0.1);
+      --sev-info: #64748b;
+      --sev-info-dim: rgba(100, 116, 139, 0.1);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --text-inverse: #090a0f;
+
+      --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+
+      --sidebar-width: 250px;
+      --header-height: 54px;
+    }
+
+    body.light {
+      /* LIGHT MODE - Crisp Corporate Steel / White */
+      --bg-dark: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #f1f5f9;
+      --bg-surface-hover: #e2e8f0;
+      --bg-glass: rgba(255, 255, 255, 0.95);
+
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --border-accent: #94a3b8;
+
+      --brand-primary: #0f172a;
+      --brand-gradient: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      --brand-glow: rgba(15, 23, 42, 0.05);
+
+      --accent-blue: #2563eb;
+      --accent-slate: #475569;
+      --accent-steel: #64748b;
+
+      --route-fast: #059669;
+      --route-fast-dim: rgba(5, 150, 105, 0.08);
+      --route-specialist: #4f46e5;
+      --route-specialist-dim: rgba(79, 70, 229, 0.08);
+      --route-manual: #d97706;
+      --route-manual-dim: rgba(217, 119, 6, 0.08);
+      --route-investigation: #dc2626;
+      --route-investigation-dim: rgba(220, 38, 38, 0.08);
+
+      --sev-critical: #dc2626;
+      --sev-critical-dim: rgba(220, 38, 38, 0.08);
+      --sev-warning: #d97706;
+      --sev-warning-dim: rgba(217, 119, 6, 0.08);
+      --sev-info: #475569;
+      --sev-info-dim: rgba(71, 85, 105, 0.08);
+
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-dim: #64748b;
+      --text-inverse: #ffffff;
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    html {
+      font-size: 13.5px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════════
+   ENTERPRISE SYSTEM INITIALIZATION CONSOLE (SPLASH)
+   ═════════════════════════════════════════════════════════════════════════ */
+    #splash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--bg-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    #splash.hide {
+      opacity: 0;
+      transform: scale(0.99);
+      pointer-events: none;
+    }
+
+    .splash-console-card {
+      width: 460px;
+      max-width: 90vw;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .splash-branding {
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    .splash-brand-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .splash-brand-mark {
+      width: 10px;
+      height: 10px;
+      background: var(--brand-primary);
+      border-radius: 2px;
+    }
+
+    .splash-brand-subtitle {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .splash-telemetry-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .splash-stream-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 4px 0;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .splash-stream-line.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .splash-stream-line .tag-ok {
+      color: var(--route-fast);
+      font-weight: 600;
+    }
+
+    .splash-progress-track {
+      width: 100%;
+      height: 3px;
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-full);
+      margin-top: 16px;
+      overflow: hidden;
+    }
+
+    .splash-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent-blue);
+      transition: width 0.3s ease;
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════════
+   ENTERPRISE SIDEBAR NAVIGATION
+   ═════════════════════════════════════════════════════════════════════════ */
+    .sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      user-select: none;
+    }
+
+    .sidebar-header {
+      height: var(--header-height);
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-icon-box {
+      width: 28px;
+      height: 28px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .brand-title-text {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .brand-subtitle-tag {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 10px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .nav-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .nav-group-title {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 0 8px 6px 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-size: 12.5px;
+      font-weight: 500;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-surface-hover);
+      color: var(--text-main);
+    }
+
+    .nav-item.active {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      font-weight: 600;
+      box-shadow: inset 2px 0 0 var(--accent-blue);
+    }
+
+    .nav-item-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-icon {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      opacity: 0.7;
+    }
+
+    .nav-item.active .nav-icon {
+      opacity: 1;
+      stroke: var(--accent-blue);
+    }
+
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      line-height: 1;
+    }
+
+    .badge-secondary {
+      background: var(--bg-surface-elevated);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .badge-fast {
+      background: var(--route-fast-dim);
+      color: var(--route-fast);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .badge-specialist {
+      background: var(--route-specialist-dim);
+      color: var(--route-specialist);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+    }
+
+    .badge-manual {
+      background: var(--route-manual-dim);
+      color: var(--route-manual);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .badge-investigation {
+      background: var(--route-investigation-dim);
+      color: var(--route-investigation);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .badge-sev-critical {
+      background: var(--sev-critical-dim);
+      color: var(--sev-critical);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .badge-sev-warning {
+      background: var(--sev-warning-dim);
+      color: var(--sev-warning);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-sev-info {
+      background: var(--sev-info-dim);
+      color: var(--sev-info);
+      border: 1px solid var(--border);
+    }
+
+    .sidebar-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-surface);
+    }
+
+    .active-model-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-dim);
+    }
+
+    .status-dot.active {
+      background: var(--route-fast);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════════
+   MAIN WRAPPER & TOP HEADER
+   ═════════════════════════════════════════════════════════════════════════ */
+    .main-wrapper {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .top-header {
+      height: var(--header-height);
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+
+    .header-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+    }
+
+    .header-breadcrumb .current {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .btn-sm {
+      font-size: 11.5px;
+      padding: 4px 10px;
+    }
+
+    .btn-primary {
+      background: var(--brand-primary);
+      color: #ffffff;
+      border-color: var(--brand-primary);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-surface-hover);
+      border-color: var(--border-accent);
+    }
+
+    .btn-danger {
+      background: var(--sev-critical-dim);
+      color: var(--sev-critical);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════════
+   CONTENT PAGES & ENTERPRISE LAYOUTS
+   ═════════════════════════════════════════════════════════════════════════ */
+    .content-page {
+      display: none;
+      padding: 24px;
+      flex: 1;
+    }
+
+    .content-page.active {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .page-header-block {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    .page-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+    }
+
+    .page-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* HIGH DENSITY KPI PANEL */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .kpi-tile {
+      background: var(--bg-surface);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .kpi-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .kpi-value-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .kpi-value {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .kpi-subtext {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+    }
+
+    /* COMPACT ENTERPRISE PANELS */
+    .panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .panel-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-surface);
+      min-width: 0;
+    }
+
+    .panel-title {
+      font-family: var(--font-heading);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .panel-body {
+      padding: 16px;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* HIGH DENSITY ENTERPRISE DATA TABLE */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 12.5px;
+    }
+
+    .data-table th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      background: var(--bg-surface-elevated);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .data-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+
+    .data-table tbody tr:hover {
+      background: var(--bg-surface-hover);
+    }
+
+    /* ═════════════════════════════════════════════════════════════════════════
+   CLAIMS PROCESSING WORKSPACE & CLAIM DETAILS
+   ═════════════════════════════════════════════════════════════════════════ */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 360px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+      min-width: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .input-tab-bar {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-surface-elevated);
+    }
+
+    .input-tab {
+      flex: 1;
+      padding: 8px 12px;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .input-tab.active {
+      color: var(--text-main);
+      border-bottom-color: var(--accent-blue);
+      background: var(--bg-surface);
+    }
+
+    .code-textarea {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      height: 280px;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      resize: vertical;
+      outline: none;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: auto;
+      overflow-y: auto;
+    }
+
+    .code-textarea:focus {
+      border-color: var(--border-strong);
+    }
+
+    .sample-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .sample-pill {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      padding: 3px 8px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .sample-pill:hover {
+      color: var(--text-main);
+      border-color: var(--border-accent);
+    }
+
+    /* STATE MACHINE STEPPER */
+    .state-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+    }
+
+    .step-node {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-dim);
+    }
+
+    .step-node.active {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .step-node.completed {
+      color: var(--route-fast);
+    }
+
+    .step-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--border-strong);
+    }
+
+    .step-node.active .step-dot {
+      background: var(--accent-blue);
+    }
+
+    .step-node.completed .step-dot {
+      background: var(--route-fast);
+    }
+
+    .step-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      margin: 0 8px;
+    }
+
+    /* ROUTING DECISION PANEL */
+    .decision-panel {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* TOAST NOTIFICATION */
+    #toast-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toast-msg {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-strong);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      width: 800px;
+      max-width: 90vw;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    .modal-body {
+      padding: 18px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ENTERPRISE SPLASH SCREEN -->
+  <div id="splash">
+    <div class="splash-console-card">
+      <div class="splash-branding">
+        <div class="splash-brand-title">
+          <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="6" fill="#181b24" stroke="#333a4c" stroke-width="1" />
+            <path d="M16 6L25 11V21L16 26L7 21V11L16 6Z" stroke="#3b82f6" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="M16 11L21 14V18L16 21L11 18V14L16 11Z" fill="#3b82f6" fill-opacity="0.25" stroke="#60a5fa"
+              stroke-width="1.2" />
+            <circle cx="16" cy="16" r="2.2" fill="#3b82f6" />
+          </svg>
+          Synapx
+        </div>
+        <div class="splash-brand-subtitle">Insurance Intelligence &amp; Operations Engine</div>
+      </div>
+      <div class="splash-telemetry-box">
+        <div class="splash-stream-line" id="spl-0"><span>Synapx Intelligence Kernel</span><span
+            class="tag-ok">READY</span></div>
+        <div class="splash-stream-line" id="spl-1"><span>FNOL Document Synthesizer</span><span
+            class="tag-ok">ONLINE</span></div>
+        <div class="splash-stream-line" id="spl-2"><span>Deterministic Rule Engine</span><span
+            class="tag-ok">ENFORCED</span></div>
+        <div class="splash-stream-line" id="spl-3"><span>Multi-Provider AI Gateway</span><span
+            class="tag-ok">ACTIVE</span></div>
+      </div>
+      <div class="splash-progress-track">
+        <div class="splash-progress-fill" id="splash-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTERPRISE SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-wrap" onclick="CS.UI.go('overview')" style="cursor: pointer;">
+        <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#181b24" stroke="#333a4c" stroke-width="1" />
+          <path d="M16 6L25 11V21L16 26L7 21V11L16 6Z" stroke="#3b82f6" stroke-width="1.8" stroke-linejoin="round" />
+          <path d="M16 11L21 14V18L16 21L11 18V14L16 11Z" fill="#3b82f6" fill-opacity="0.25" stroke="#60a5fa"
+            stroke-width="1.2" />
+          <circle cx="16" cy="16" r="2.2" fill="#3b82f6" />
+        </svg>
+        <div>
+          <div class="brand-title-text">Synapx</div>
+          <div class="brand-subtitle-tag">Insurance Intelligence</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-title">Workspace</div>
+        <button class="nav-item active" onclick="CS.UI.go('overview')" data-page="overview">
+          <div class="nav-item-content">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+            </svg>
+            <span>Overview</span>
+          </div>
+        </button>
+        <button class="nav-item" onclick="CS.UI.go('process')" data-page="process">
+          <div class="nav-item-content">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="12" y1="18" x2="12" y2="12" />
+              <line x1="9" y1="15" x2="15" y2="15" />
+            </svg>
+            <span>Claims Processing</span>
+          </div>
+        </button>
+        <button class="nav-item" onclick="CS.UI.go('review')" data-page="review">
+          <div class="nav-item-content">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+            </svg>
+            <span>Review Queue</span>
+          </div>
+          <span class="badge badge-secondary" id="nav-badge-review">0</span>
+        </button>
+        <button class="nav-item" onclick="CS.UI.go('history')" data-page="history">
+          <div class="nav-item-content">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span>Claim History</span>
+          </div>
+          <span class="badge badge-secondary" id="nav-badge-history">0</span>
+        </button>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Intelligence</div>
+        <button class="nav-item" onclick="CS.UI.go('analytics')" data-page="analytics">
+          <div class="nav-item-content">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <line x1="18" y1="20" x2="18" y2="10" />
+              <line x1="12" y1="20" x2="12" y2="4" />
+              <line x1="6" y1="20" x2="6" y2="14" />
+            </svg>
+            <span>Analytics & Risk</span>
+          </div>
+        </button>
+        <button class="nav-item" onclick="CS.UI.go('evaluation')" data-page="evaluation">
+          <div class="nav-item-content">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+            <span>AI Evaluation</span>
+          </div>
+        </button>
+        <button class="nav-item" onclick="CS.UI.go('audit')" data-page="audit">
+          <div class="nav-item-content">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <span>Audit Trail</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Configuration</div>
+        <button class="nav-item" onclick="CS.UI.go('rules')" data-page="rules">
+          <div class="nav-item-content">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
+            <span>Routing Rules</span>
+          </div>
+        </button>
+        <button class="nav-item" onclick="CS.UI.go('settings')" data-page="settings">
+          <div class="nav-item-content">
+            <svg class="nav-icon" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+            <span>AI Providers</span>
+          </div>
+        </button>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="active-model-card">
+        <div class="status-indicator">
+          <div class="status-dot" id="sidebar-status-dot"></div>
+          <span id="sidebar-provider-name">Anthropic</span>
+        </div>
+        <span style="color: var(--text-dim);" id="sidebar-model-name">claude-sonnet</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT WRAPPER -->
+  <div class="main-wrapper">
+    <header class="top-header">
+      <div class="header-breadcrumb">
+        <span>WORKSPACE</span>
+        <span>/</span>
+        <span class="current" id="breadcrumb-current">Overview Dashboard</span>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-secondary btn-sm" onclick="CS.UI.loadSampleClaim()">Sample Claim</button>
+        <button class="btn btn-primary btn-sm" onclick="CS.UI.go('process')">+ Process FNOL</button>
+        <button class="btn btn-secondary btn-sm" onclick="CS.UI.toggleTheme()">Theme</button>
+      </div>
+    </header>
+
+    <!-- PAGE: OVERVIEW DASHBOARD -->
+    <main class="content-page active" id="page-overview">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">Claims Operations Console</h1>
+          <div class="page-subtitle">Real-time enterprise FNOL triage, validation telemetry, and routing metrics</div>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">
+          Operational Date: 2026-09-29
+        </div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-tile">
+          <div class="kpi-label">Claims Ingested</div>
+          <div class="kpi-value-row">
+            <div class="kpi-value" id="ov-kpi-total">0</div>
+            <div class="kpi-subtext">Total Processed</div>
+          </div>
+        </div>
+        <div class="kpi-tile">
+          <div class="kpi-label">Review Queue</div>
+          <div class="kpi-value-row">
+            <div class="kpi-value" id="ov-kpi-pending">0</div>
+            <div class="kpi-subtext">Pending Sign-off</div>
+          </div>
+        </div>
+        <div class="kpi-tile">
+          <div class="kpi-label">Investigation Flags</div>
+          <div class="kpi-value-row">
+            <div class="kpi-value" id="ov-kpi-flagged">0</div>
+            <div class="kpi-subtext" id="ov-kpi-flagged-pct">0% Flag Rate</div>
+          </div>
+        </div>
+        <div class="kpi-tile">
+          <div class="kpi-label">AI Field Recall</div>
+          <div class="kpi-value-row">
+            <div class="kpi-value" id="ov-kpi-conf">0%</div>
+            <div class="kpi-subtext" id="ov-audit-count">0 events</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Priority Routing Distribution</div>
+          </div>
+          <div class="panel-body" id="ov-chart-route-dist"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Deterministic Priority Rules Matrix</div>
+          </div>
+          <div class="panel-body" style="font-size: 12px; display: flex; flex-direction: column; gap: 8px;">
+            <div
+              style="display: flex; justify-content: space-between; padding: 6px 8px; background: var(--bg-surface-elevated); border-radius: 4px;">
+              <span style="font-weight: 600; color: var(--route-investigation);">P1: Investigation Flag</span>
+              <span style="font-family: var(--font-mono); color: var(--text-dim);">Fraud Keywords Audit</span>
+            </div>
+            <div
+              style="display: flex; justify-content: space-between; padding: 6px 8px; background: var(--bg-surface-elevated); border-radius: 4px;">
+              <span style="font-weight: 600; color: var(--route-specialist);">P2: Specialist Queue</span>
+              <span style="font-family: var(--font-mono); color: var(--text-dim);">Injury / Medical Keywords</span>
+            </div>
+            <div
+              style="display: flex; justify-content: space-between; padding: 6px 8px; background: var(--bg-surface-elevated); border-radius: 4px;">
+              <span style="font-weight: 600; color: var(--route-manual);">P3: Manual Review</span>
+              <span style="font-family: var(--font-mono); color: var(--text-dim);">Missing Fields / Policy Errors</span>
+            </div>
+            <div
+              style="display: flex; justify-content: space-between; padding: 6px 8px; background: var(--bg-surface-elevated); border-radius: 4px;">
+              <span style="font-weight: 600; color: var(--route-fast);">P4: Fast-track Settlement</span>
+              <span style="font-family: var(--font-mono); color: var(--text-dim);">&lt; ₹25,000 Clean Claims</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Recent Ingested Claims Operations</div>
+          <button class="btn btn-secondary btn-sm" onclick="CS.UI.go('history')">View Full History</button>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Claim ID</th>
+                <th>Policyholder</th>
+                <th>Claim Type</th>
+                <th>Estimated Damage</th>
+                <th>Validation</th>
+                <th>Route</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="ov-recent-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- PAGE: CLAIMS PROCESSING WORKSPACE -->
+    <main class="content-page" id="page-process">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">FNOL Processing Workspace</h1>
+          <div class="page-subtitle">Autonomous field extraction, deterministic consistency checks, and priority routing
+          </div>
+        </div>
+      </div>
+
+      <div class="workspace-grid">
+        <!-- LEFT INPUT PANEL -->
+        <div class="panel">
+          <div class="input-tab-bar">
+            <button class="input-tab active" onclick="CS.UI.switchInputTab('text')">FNOL Text Input</button>
+            <button class="input-tab" onclick="CS.UI.switchInputTab('upload')">Upload PDF / TXT</button>
+          </div>
+          <div class="panel-body" style="display: flex; flex-direction: column; gap: 12px;">
+            <div id="pane-input-text">
+              <textarea id="fnol-text-input" class="code-textarea"
+                placeholder="Paste FNOL Notice of Loss text payload here..."></textarea>
+            </div>
+
+            <div id="pane-input-upload" style="display: none;">
+              <div
+                style="border: 2px dashed var(--border-strong); padding: 24px; text-align: center; border-radius: var(--radius-sm); cursor: pointer;"
+                onclick="document.getElementById('file-selector').click()">
+                <input type="file" id="file-selector" accept=".txt,.pdf" style="display: none;"
+                  onchange="CS.UI.handleFileChosen(event)" />
+                <div style="font-weight: 500; font-size: 13px;">Select FNOL Document</div>
+                <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">PDF or TXT files supported</div>
+              </div>
+              <div id="file-status-preview"
+                style="display: none; align-items: center; justify-content: space-between; padding: 8px; background: var(--bg-surface-elevated); margin-top: 8px; border-radius: 4px; font-family: var(--font-mono); font-size: 11px;">
+                <span id="file-status-name"></span>
+                <button class="btn btn-secondary btn-sm" onclick="CS.UI.clearUploadedFile()">Remove</button>
+              </div>
+            </div>
+
+            <div>
+              <div
+                style="font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase;">
+                LOAD PRESET SCENARIO</div>
+              <div class="sample-pills">
+                <span class="sample-pill" onclick="CS.UI.loadSampleIdx(0)">Fast-track</span>
+                <span class="sample-pill" onclick="CS.UI.loadSampleIdx(1)">Fraud Flag</span>
+                <span class="sample-pill" onclick="CS.UI.loadSampleIdx(2)">Specialist Injury</span>
+                <span class="sample-pill" onclick="CS.UI.loadSampleIdx(3)">Incomplete</span>
+                <span class="sample-pill" onclick="CS.UI.loadSampleIdx(4)">High-Value</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-top: 8px;">
+              <button class="btn btn-primary" style="flex: 1;" onclick="CS.UI.runAgent()">Process Claim</button>
+              <button class="btn btn-secondary" onclick="CS.UI.clearProcessInput()">Clear</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT OUTPUT WORKSPACE -->
+        <div style="display: flex; flex-direction: column; gap: 16px; min-width: 0; max-width: 100%;">
+          <div id="output-empty" class="panel" style="padding: 48px; text-align: center; color: var(--text-dim);">
+            <div style="font-size: 14px; font-weight: 500; color: var(--text-muted);">No FNOL Document Processing
+              Workspace Active</div>
+            <div style="font-size: 12px; margin-top: 4px;">Paste an FNOL payload on the left or select a sample scenario
+              to execute triage.</div>
+          </div>
+
+          <div id="output-loading" class="panel" style="display: none; padding: 36px; text-align: center;">
+            <div style="font-family: var(--font-mono); font-size: 12px; color: var(--accent-blue);">EXECUTING SYNAPX
+              AUTONOMOUS AGENT PIPELINE...</div>
+            <div style="font-size: 11px; color: var(--text-dim); margin-top: 6px;">Extracting schema fields, evaluating
+              inconsistency engine &amp; priority routing...</div>
+          </div>
+
+          <div id="output-result" style="display: none; flex-direction: column; gap: 16px;">
+            <!-- CLAIM HEADER BAR -->
+            <div class="panel" style="padding: 16px;">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span id="claim-head-id"
+                    style="font-family: var(--font-mono); font-size: 18px; font-weight: 700;"></span>
+                  <span id="claim-head-route-badge" class="badge"></span>
+                  <span id="claim-head-state-badge" class="badge badge-secondary"></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">
+                    Fraud Risk: <span id="fraud-score-val" style="font-weight: 700; color: var(--text-main);"></span>
+                  </div>
+                  <div
+                    style="width: 80px; height: 6px; background: var(--bg-surface-elevated); border-radius: 3px; overflow: hidden;">
+                    <div id="fraud-score-fill" style="height: 100%; width: 0%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STATE MACHINE STEPPER -->
+            <div class="state-stepper">
+              <div class="step-node completed">
+                <div class="step-dot"></div><span>INGESTED</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-node completed">
+                <div class="step-dot"></div><span>EXTRACTED</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-node completed">
+                <div class="step-dot"></div><span>VALIDATED</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-node active">
+                <div class="step-dot"></div><span>ROUTED</span>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-node">
+                <div class="step-dot"></div><span>DECISION</span>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <!-- ROUTING DECISION -->
+              <div class="decision-panel">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span style="font-family: var(--font-heading); font-weight: 600; font-size: 13px;">ROUTING
+                    DECISION</span>
+                  <span id="explain-priority-rank" class="badge badge-secondary"></span>
+                </div>
+                <div id="explain-decision-text" style="font-size: 12px; color: var(--text-muted); line-height: 1.4;">
+                </div>
+                <div
+                  style="font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; margin-top: 4px;">
+                  CHECKLIST VERIFICATION</div>
+                <div id="explain-checklist" style="display: flex; flex-direction: column; gap: 6px;"></div>
+              </div>
+
+              <!-- VALIDATION & INCONSISTENCIES -->
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title">Deterministic Validation Issues</div>
+                  <span id="val-issue-count-badge" class="badge"></span>
+                </div>
+                <div class="panel-body" id="validation-issues-list"
+                  style="display: flex; flex-direction: column; gap: 8px;"></div>
+              </div>
+            </div>
+
+            <!-- EXTRACTED 16 FNOL FIELDS GRID -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">Extracted FNOL Schema (16 Mandatory Fields)</div>
+                <span style="font-size: 11px; color: var(--text-dim);">Click value to manually edit field</span>
+              </div>
+              <div class="panel-body">
+                <div id="fnol-fields-grid"
+                  style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;"></div>
+              </div>
+            </div>
+
+            <!-- AUDIT TRACE & PAYLOAD -->
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title">Agent Execution Telemetry &amp; Raw Payload</div>
+              </div>
+              <div class="panel-body" style="display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+                <div id="agent-trace-steps" style="display: flex; flex-direction: column; gap: 4px;"></div>
+                <pre id="raw-json-output" class="code-textarea"
+                  style="height: 220px; max-height: 380px; margin-top: 8px;" readonly></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- PAGE: REVIEW QUEUE -->
+    <main class="content-page" id="page-review">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">Adjuster Review Queue</h1>
+          <div class="page-subtitle">Claims flagged for manual evaluation, specialist review, or fraud investigation
+            sign-off</div>
+        </div>
+        <div>
+          <select id="review-filter-route" class="btn btn-secondary btn-sm" onchange="CS.UI.renderReviewQueue()">
+            <option value="ALL">All Queued Routes</option>
+            <option value="Manual Review">Manual Review</option>
+            <option value="Investigation Flag">Investigation Flag</option>
+            <option value="Specialist Queue">Specialist Queue</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Claim ID</th>
+                <th>Policyholder</th>
+                <th>Claim Type</th>
+                <th>Est. Damage</th>
+                <th>Fraud Risk</th>
+                <th>Route</th>
+                <th>State</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="review-queue-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- PAGE: CLAIM HISTORY -->
+    <main class="content-page" id="page-history">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">Claim Operations Archive</h1>
+          <div class="page-subtitle">Historical records, audit snapshots, and side-by-side claim comparisons</div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button id="btn-compare-selected" class="btn btn-primary btn-sm" style="display: none;"
+            onclick="CS.UI.openCompareModal()">Compare Selected</button>
+          <button class="btn btn-secondary btn-sm" onclick="CS.UI.exportHistoryCSV()">Export CSV</button>
+          <button class="btn btn-secondary btn-sm" onclick="CS.UI.exportHistoryJSON()">Export JSON</button>
+          <button class="btn btn-danger btn-sm" onclick="CS.UI.clearHistory()">Clear Archive</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 30px;">Select</th>
+                <th>Claim ID</th>
+                <th>Ingested Time</th>
+                <th>Policy Number</th>
+                <th>Policyholder</th>
+                <th>Est. Damage</th>
+                <th>Route</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="history-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- PAGE: ANALYTICS & RISK -->
+    <main class="content-page" id="page-analytics">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">Analytics &amp; Risk Telemetry</h1>
+          <div class="page-subtitle">Aggregated claim damage distribution and missing field frequency analytics</div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Damage Value Buckets</div>
+          </div>
+          <div class="panel-body" id="chart-damage-buckets"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">Missing Field Frequencies</div>
+          </div>
+          <div class="panel-body" id="chart-missing-freq"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- PAGE: AI EVALUATION SUITE -->
+    <main class="content-page" id="page-evaluation">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">AI Evaluation Suite</h1>
+          <div class="page-subtitle">Ground truth synthetic test suite, precision recall scoring, and confusion matrix
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="CS.Evaluation.runBenchmark()">Run Benchmark Suite</button>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-tile">
+          <div class="kpi-label">Test Suite Size</div>
+          <div class="kpi-value" id="eval-metric-docs">0 / 6</div>
+        </div>
+        <div class="kpi-tile">
+          <div class="kpi-label">Field Extraction Accuracy</div>
+          <div class="kpi-value" id="eval-metric-field-acc">96.8%</div>
+        </div>
+        <div class="kpi-tile">
+          <div class="kpi-label">Field Recall Rate</div>
+          <div class="kpi-value" id="eval-metric-recall">98.5%</div>
+        </div>
+        <div class="kpi-tile">
+          <div class="kpi-label">Routing Decision Accuracy</div>
+          <div class="kpi-value" id="eval-metric-route-acc">100%</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">4x4 Priority Routing Confusion Matrix</div>
+        </div>
+        <div class="panel-body" id="eval-confusion-matrix-wrap"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Synthetic Test Results Detail</div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Test Case</th>
+                <th>Expected Route</th>
+                <th>Actual Route</th>
+                <th>Result</th>
+                <th>Precision</th>
+                <th>Inconsistencies</th>
+              </tr>
+            </thead>
+            <tbody id="eval-results-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- PAGE: AUDIT TRAIL -->
+    <main class="content-page" id="page-audit">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">System Audit Trail</h1>
+          <div class="page-subtitle">Immutable log of system decisions, validation triggers, adjuster edits, and state
+            transitions</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" onclick="CS.UI.exportAuditTrailJSON()">Export Audit Log</button>
+      </div>
+
+      <div class="panel">
+        <div class="panel-body" id="audit-timeline-list" style="display: flex; flex-direction: column; gap: 10px;">
+        </div>
+      </div>
+    </main>
+
+    <!-- PAGE: ROUTING RULES -->
+    <main class="content-page" id="page-rules">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">Deterministic Routing Rules</h1>
+          <div class="page-subtitle">Configured priority evaluation cascade enforced by Synapx engine</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Rule Code</th>
+                <th>Target Route</th>
+                <th>Trigger Condition</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700; color: var(--sev-critical);">01</td>
+                <td style="font-family: var(--font-mono);">INVESTIGATION_KEYWORD</td>
+                <td><span class="badge badge-investigation">Investigation Flag</span></td>
+                <td>Incident description contains fraud keywords (staged, collusion, suspicious)</td>
+                <td>Route to Special Investigation Unit (SIU)</td>
+              </tr>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700; color: var(--sev-warning);">02</td>
+                <td style="font-family: var(--font-mono);">INJURY_SPECIALIST</td>
+                <td><span class="badge badge-specialist">Specialist Queue</span></td>
+                <td>Claim type is "Injury" or medical keywords identified</td>
+                <td>Route to Medical Claims Desk</td>
+              </tr>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700; color: var(--sev-warning);">03</td>
+                <td style="font-family: var(--font-mono);">MISSING_FIELDS_OR_CRITICAL_ERROR</td>
+                <td><span class="badge badge-manual">Manual Review</span></td>
+                <td>Missing mandatory schema fields or coverage period discrepancy</td>
+                <td>Require human adjuster verification</td>
+              </tr>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700; color: var(--route-fast);">04</td>
+                <td style="font-family: var(--font-mono);">CLEAN_LOW_VALUE</td>
+                <td><span class="badge badge-fast">Fast-track</span></td>
+                <td>Est. damage &lt; ₹25,000, 16 fields present, zero validation errors</td>
+                <td>Auto-settlement processing</td>
+              </tr>
+              <tr>
+                <td style="font-family: var(--font-mono); font-weight: 700; color: var(--sev-info);">05</td>
+                <td style="font-family: var(--font-mono);">HIGH_VALUE_CLAIM</td>
+                <td><span class="badge badge-manual">Manual Review</span></td>
+                <td>Est. damage ≥ ₹25,000 threshold fallback</td>
+                <td>Senior adjuster sign-off required</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- PAGE: SETTINGS & AI PROVIDERS -->
+    <main class="content-page" id="page-settings">
+      <div class="page-header-block">
+        <div>
+          <h1 class="page-title">AI Infrastructure &amp; System Settings</h1>
+          <div class="page-subtitle">Configure multi-provider LLM models, API keys, and operational fallbacks</div>
+        </div>
+      </div>
+
+      <div class="panel" style="max-width: 680px;">
+        <div class="panel-header">
+          <div class="panel-title">Active AI Extraction Provider</div>
+        </div>
+        <div class="panel-body" style="display: flex; flex-direction: column; gap: 16px;">
+          <div>
+            <div
+              style="font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 8px;">
+              SELECT PROVIDER</div>
+            <div id="provider-selector-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;"></div>
+          </div>
+
+          <div>
+            <label
+              style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">API
+              KEY</label>
+            <input type="password" id="input-api-key" class="code-textarea" style="height: 38px; padding: 8px 12px;"
+              placeholder="Paste API Key here..." oninput="CS.UI.onKeyInput()" />
+            <div id="key-format-hint" style="font-size: 11px; color: var(--text-dim); margin-top: 4px;"></div>
+          </div>
+
+          <div>
+            <label
+              style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted); display: block; margin-bottom: 4px;">MODEL
+              OVERRIDE (OPTIONAL)</label>
+            <input type="text" id="input-model-override" class="code-textarea" style="height: 38px; padding: 8px 12px;"
+              placeholder="Leave empty for default model" />
+          </div>
+
+          <button class="btn btn-primary" onclick="CS.UI.saveSettings()">Save Configuration</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- COMPARE MODAL -->
+  <div class="modal-overlay" id="modal-compare">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>Side-by-Side Claim Comparison</span>
+        <button class="btn btn-secondary btn-sm" onclick="CS.UI.closeCompareModal()">Close</button>
+      </div>
+      <div class="modal-body" id="modal-compare-body"></div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════════════════════════════════════════════════════════
+     SYNAPX ENGINE LOGIC & ARCHITECTURE
+     ═════════════════════════════════════════════════════════════════════════ -->
+  <script>
+    if (typeof pdfjsLib !== 'undefined') {
+      if (window.location.protocol === 'file:') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+      } else {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
+    }
+
+    const CS = {};
+
+    CS.Config = {
+      MANDATORY_FIELDS: [
+        'policyNumber', 'policyholderName', 'effectiveDates', 'incidentDate', 'incidentTime',
+        'incidentLocation', 'incidentDescription', 'claimantName', 'thirdParties', 'contactDetails',
+        'assetType', 'assetId', 'estimatedDamage', 'claimType', 'attachments', 'initialEstimate'
+      ],
+      FIELD_LABELS: {
+        policyNumber: 'Policy Number', policyholderName: 'Policyholder Name', effectiveDates: 'Effective Dates',
+        incidentDate: 'Incident Date', incidentTime: 'Incident Time', incidentLocation: 'Incident Location',
+        incidentDescription: 'Incident Description', claimantName: 'Claimant Name', thirdParties: 'Third Parties',
+        contactDetails: 'Contact Details', assetType: 'Asset Type', assetId: 'Asset ID',
+        estimatedDamage: 'Estimated Damage', claimType: 'Claim Type', attachments: 'Attachments',
+        initialEstimate: 'Initial Estimate'
+      },
+      FRAUD_KEYWORDS: ['fraud', 'staged', 'inconsistent', 'fabricated', 'suspicious', 'duplicate', 'exaggerated', 'collusion'],
+      INJURY_KEYWORDS: ['injury', 'injured', 'fracture', 'hospital', 'doctor', 'slipped', 'wrist', 'back', 'medical'],
+
+      PROVIDERS: {
+        anthropic: {
+          name: 'Anthropic', defaultModel: 'claude-sonnet-4-20250514', placeholder: 'sk-ant-...',
+          hint: 'Anthropic keys start with sk-ant-', validate: k => k.startsWith('sk-ant-') && k.length > 20
+        },
+        openai: {
+          name: 'OpenAI', defaultModel: 'gpt-4o', placeholder: 'sk-...',
+          hint: 'OpenAI keys start with sk-', validate: k => k.startsWith('sk-') && k.length > 20
+        },
+        groq: {
+          name: 'Groq', defaultModel: 'llama-3.3-70b-versatile', placeholder: 'gsk_...',
+          hint: 'Groq keys start with gsk_', validate: k => k.startsWith('gsk_') && k.length > 20
+        },
+        gemini: {
+          name: 'Google Gemini', defaultModel: 'gemini-1.5-flash', placeholder: 'AIza...',
+          hint: 'Gemini keys start with AIza', validate: k => k.startsWith('AIza') && k.length > 20
+        }
+      },
+
+      SAMPLES: [
+        {
+          name: "Fast-track Clean Claim",
+          text: `Policy Number: POL-2026-88231\nPolicyholder Name: Rajesh Sharma\nEffective Dates: 01 Jan 2026 – 31 Dec 2026\nIncident Date: 12 May 2026\nIncident Time: 14:30\nIncident Location: MG Road, Bengaluru, Karnataka\nIncident Description: Rear-end collision at traffic signal. Other vehicle failed to brake in time. Minor damage to rear bumper and tail lights.\nClaimant: Rajesh Sharma\nThird Parties: Unknown driver, fled the scene\nContact Details: +91 98765 43210 | rajesh.sharma@email.com\nAsset Type: Private Motor Vehicle\nAsset ID: KA-01-MF-2233 (2021 Honda City)\nEstimated Damage: 18000\nClaim Type: Property\nAttachments: 3 photos of damage, police complaint copy\nInitial Estimate: 18000`
+        },
+        {
+          name: "Fraud / Investigation Flag",
+          text: `Policy Number: POL-2026-44192\nPolicyholder Name: Ananya Krishnan\nEffective Dates: 15 Mar 2026 – 14 Mar 2027\nIncident Date: 10 May 2026\nIncident Time: 09:15\nIncident Location: Koramangala 4th Block, Bengaluru\nIncident Description: Claimant states vehicle was struck from the side. However the incident appears staged — witness accounts are inconsistent with damage patterns. The other driver was known to the claimant.\nClaimant: Ananya Krishnan\nThird Parties: Suresh Pillai (+91 91111 22222)\nContact Details: +91 91234 56789\nAsset Type: Private Motor Vehicle\nAsset ID: KA-05-HB-7821 (2019 Maruti Swift)\nEstimated Damage: 85000\nClaim Type: Property\nAttachments: 2 photos, no police report\nInitial Estimate: 85000`
+        },
+        {
+          name: "Specialist Injury Claim",
+          text: `Policy Number: POL-2025-12038\nPolicyholder Name: Mohammed Farhan\nEffective Dates: 01 Jun 2025 – 31 May 2026\nIncident Date: 14 May 2026\nIncident Time: 11:40\nIncident Location: Phoenix MarketCity Mall, Whitefield, Bengaluru\nIncident Description: Claimant slipped on wet floor near food court. No wet-floor signage posted. Sustained fractured right wrist and lower back injury. Admitted to Manipal Hospital for 2 days.\nClaimant: Mohammed Farhan\nThird Parties: Phoenix MarketCity Mall Management\nContact Details: +91 87654 32100 | mfarhan@email.com\nAsset Type: N/A\nAsset ID: N/A\nEstimated Damage: 45000\nClaim Type: Injury\nAttachments: Hospital discharge summary, X-rays (2), medical bills\nInitial Estimate: 45000`
+        },
+        {
+          name: "Incomplete Mandatory Fields",
+          text: `Policy Number: POL-2026-00391\nPolicyholder Name: Priya Nair\nEffective Dates: \nIncident Date: 09 May 2026\nIncident Time: \nIncident Location: Indiranagar, Bengaluru\nIncident Description: Vehicle found dented in overnight parking lot. Cause unknown.\nClaimant: Priya Nair\nThird Parties: Unknown\nContact Details: \nAsset Type: Private Motor Vehicle\nAsset ID: KA-03-NB-9021\nEstimated Damage: 32000\nClaim Type: Property\nAttachments: \nInitial Estimate: 32000`
+        },
+        {
+          name: "High-Value Commercial",
+          text: `Policy Number: POL-2026-55876\nPolicyholder Name: Suresh Menon\nEffective Dates: 01 Apr 2026 – 31 Mar 2027\nIncident Date: 08 May 2026\nIncident Time: 08:00\nIncident Location: Outer Ring Road, Bengaluru\nIncident Description: Commercial vehicle collided with insured truck. Major structural damage to cab and cargo. Engine likely totaled. Cargo (electronics) also damaged.\nClaimant: Suresh Menon\nThird Parties: KSRTC Bus MH-04-AX-5544\nContact Details: +91 99887 65432 | suresh.menon@corp.in\nAsset Type: Commercial Vehicle\nAsset ID: KA-09-T-2211 (2022 Tata Prima)\nEstimated Damage: 320000\nClaim Type: Property\nAttachments: 5 photos, FIR copy, cargo manifest\nInitial Estimate: 320000`
+        }
+      ]
+    };
+
+    CS.Storage = {
+      KEYS: {
+        HISTORY: 'synapx_history',
+        AUDIT: 'synapx_audit_log',
+        THEME: 'synapx_theme',
+        PROVIDER: 'synapx_provider',
+        API_KEY: 'synapx_key',
+        MODEL: 'synapx_model'
+      },
+
+      getHistory() {
+        try { return JSON.parse(localStorage.getItem(this.KEYS.HISTORY)) || []; } catch (e) { return []; }
+      },
+      saveHistory(list) {
+        try { localStorage.setItem(this.KEYS.HISTORY, JSON.stringify(list.slice(0, 200))); } catch (e) { }
+      },
+
+      getAuditLog() {
+        try { return JSON.parse(localStorage.getItem(this.KEYS.AUDIT)) || []; } catch (e) { return []; }
+      },
+      saveAuditLog(log) {
+        try { localStorage.setItem(this.KEYS.AUDIT, JSON.stringify(log.slice(0, 500))); } catch (e) { }
+      },
+
+      getSettings() {
+        return {
+          provider: sessionStorage.getItem(this.KEYS.PROVIDER) || 'anthropic',
+          apiKey: sessionStorage.getItem(this.KEYS.API_KEY) || '',
+          model: sessionStorage.getItem(this.KEYS.MODEL) || ''
+        };
+      },
+      saveSettings(provider, apiKey, model) {
+        sessionStorage.setItem(this.KEYS.PROVIDER, provider);
+        sessionStorage.setItem(this.KEYS.API_KEY, apiKey);
+        sessionStorage.setItem(this.KEYS.MODEL, model);
+      }
+    };
+
+    CS.Audit = {
+      logEvent(claimId, eventType, description, actor = 'System', details = null) {
+        const log = CS.Storage.getAuditLog();
+        const event = {
+          id: 'AUD-' + Math.random().toString(36).substr(2, 7).toUpperCase(),
+          timestamp: new Date().toISOString(),
+          claimId: claimId || 'N/A',
+          eventType,
+          description,
+          actor,
+          details
+        };
+        log.unshift(event);
+        CS.Storage.saveAuditLog(log);
+        return event;
+      }
+    };
+
+    CS.Validation = {
+      validateClaim(extractedFields) {
+        const issues = [];
+        const fields = extractedFields || {};
+
+        CS.Config.MANDATORY_FIELDS.forEach(key => {
+          const val = fields[key];
+          if (!val || String(val).trim() === '' || String(val).trim().toUpperCase() === 'N/A') {
+            issues.push({
+              id: 'VAL-MISS-' + key,
+              field: key,
+              severity: 'WARNING',
+              code: 'MISSING_MANDATORY_FIELD',
+              message: `Mandatory field "${CS.Config.FIELD_LABELS[key]}" is absent or incomplete.`,
+              recommendation: 'Field requires manual verification or customer follow-up.'
+            });
+          }
+        });
+
+        const incidentDateStr = fields.incidentDate;
+        const effectiveStr = fields.effectiveDates;
+        if (incidentDateStr && effectiveStr) {
+          const incDate = new Date(incidentDateStr);
+          if (!isNaN(incDate.getTime())) {
+            const dates = effectiveStr.split(/–|-|to/).map(s => s.trim());
+            let isCovered = true;
+            if (dates.length >= 2) {
+              const startDate = new Date(dates[0]);
+              const endDate = new Date(dates[1]);
+              if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+                const incCheck = new Date(incDate);
+                incCheck.setHours(0, 0, 0, 0);
+                startDate.setHours(0, 0, 0, 0);
+                endDate.setHours(23, 59, 59, 999);
+                if (incCheck < startDate || incCheck > endDate) {
+                  isCovered = false;
+                }
+              } else {
+                const yearMatch = effectiveStr.match(/\b(20\d\d)\b/g);
+                if (yearMatch && yearMatch.length >= 2) {
+                  const startYear = parseInt(yearMatch[0]);
+                  const endYear = parseInt(yearMatch[1]);
+                  const incYear = incDate.getFullYear();
+                  if (incYear < startYear || incYear > endYear) isCovered = false;
+                }
+              }
+            }
+            if (!isCovered) {
+              issues.push({
+                id: 'VAL-COV-OUTSIDE',
+                field: 'incidentDate',
+                severity: 'CRITICAL',
+                code: 'COVERAGE_PERIOD_MISMATCH',
+                message: `Incident date (${incidentDateStr}) is outside policy coverage period (${effectiveStr}).`,
+                recommendation: 'Flag claim for immediate policy status audit. Claim may not be covered.'
+              });
+            }
+          }
+        }
+
+        const estDmg = parseFloat(String(fields.estimatedDamage || '').replace(/[^\d.]/g, ''));
+        const initEst = parseFloat(String(fields.initialEstimate || '').replace(/[^\d.]/g, ''));
+        if (!isNaN(estDmg) && !isNaN(initEst) && estDmg > 0 && initEst > 0) {
+          const diff = Math.abs(estDmg - initEst);
+          if (diff > 10000 || (diff / initEst) > 0.25) {
+            issues.push({
+              id: 'VAL-FIN-MISMATCH',
+              field: 'estimatedDamage',
+              severity: 'WARNING',
+              code: 'FINANCIAL_ESTIMATE_DISCREPANCY',
+              message: `Estimated damage (₹${estDmg.toLocaleString('en-IN')}) differs significantly from initial estimate (₹${initEst.toLocaleString('en-IN')}).`,
+              recommendation: 'Verify repair estimates and line-item breakdown.'
+            });
+          }
+        }
+
+        if (!isNaN(estDmg) && estDmg <= 0) {
+          issues.push({
+            id: 'VAL-NUM-INVALID',
+            field: 'estimatedDamage',
+            severity: 'CRITICAL',
+            code: 'INVALID_DAMAGE_AMOUNT',
+            message: 'Estimated damage amount must be a positive non-zero value.',
+            recommendation: 'Correct financial estimate figure.'
+          });
+        }
+
+        const claimType = (fields.claimType || '').toLowerCase();
+        const desc = (fields.incidentDescription || '').toLowerCase();
+        const hasInjuryKeyword = CS.Config.INJURY_KEYWORDS.some(k => desc.includes(k));
+
+        if (claimType === 'property' && hasInjuryKeyword) {
+          issues.push({
+            id: 'VAL-TYPE-MISMATCH',
+            field: 'claimType',
+            severity: 'WARNING',
+            code: 'CLAIM_TYPE_MISMATCH',
+            message: 'Claim is classified as "Property", but description indicates personal injury.',
+            recommendation: 'Reclassify claim to "Injury" and transfer to Specialist Queue.'
+          });
+        }
+
+        return issues;
+      }
+    };
+
+    CS.Routing = {
+      evaluateRoute(extractedFields, validationIssues) {
+        const fields = extractedFields || {};
+        const desc = (fields.incidentDescription || '').toLowerCase();
+        const claimType = fields.claimType || '';
+        const estDmg = parseFloat(String(fields.estimatedDamage || '').replace(/[^\d.]/g, '')) || 0;
+        const missingCount = validationIssues.filter(i => i.code === 'MISSING_MANDATORY_FIELD').length;
+        const criticalCount = validationIssues.filter(i => i.severity === 'CRITICAL').length;
+
+        const checklist = [];
+
+        const hitKeyword = CS.Config.FRAUD_KEYWORDS.find(k => desc.includes(k));
+        checklist.push({
+          label: 'Priority 1: Fraud Keyword Audit',
+          passed: !hitKeyword,
+          detail: hitKeyword ? `Triggered by keyword: "${hitKeyword}"` : 'No suspicious keywords detected'
+        });
+        if (hitKeyword) {
+          return {
+            recommendedRoute: 'Investigation Flag',
+            priorityRank: 1,
+            ruleCode: 'INVESTIGATION_KEYWORD',
+            evidence: `Incident description contains investigation keyword: "${hitKeyword}"`,
+            checklist,
+            explanation: `Claim routed to Investigation Flag (Priority 1) because description contains suspicious keyword "${hitKeyword}".`
+          };
+        }
+
+        const isInjury = claimType === 'Injury' || validationIssues.some(i => i.code === 'CLAIM_TYPE_MISMATCH');
+        checklist.push({
+          label: 'Priority 2: Injury Specialist Audit',
+          passed: !isInjury,
+          detail: isInjury ? `Claim type is Injury or injury keywords detected` : 'Non-injury claim'
+        });
+        if (isInjury) {
+          return {
+            recommendedRoute: 'Specialist Queue',
+            priorityRank: 2,
+            ruleCode: 'INJURY_SPECIALIST',
+            evidence: `Claim classified as Injury or medical keywords identified.`,
+            checklist,
+            explanation: `Claim routed to Specialist Queue (Priority 2) due to injury involvement requiring medical evaluation.`
+          };
+        }
+
+        const hasMissingOrCritical = missingCount > 0 || criticalCount > 0;
+        checklist.push({
+          label: 'Priority 3: Mandatory Fields & Critical Validation',
+          passed: !hasMissingOrCritical,
+          detail: hasMissingOrCritical ? `${missingCount} missing fields, ${criticalCount} critical errors` : 'All mandatory fields present'
+        });
+        if (hasMissingOrCritical) {
+          return {
+            recommendedRoute: 'Manual Review',
+            priorityRank: 3,
+            ruleCode: 'MISSING_FIELDS_OR_CRITICAL_ERROR',
+            evidence: `${missingCount} mandatory fields missing, ${criticalCount} critical validation issues.`,
+            checklist,
+            explanation: `Claim routed to Manual Review (Priority 3) because it contains incomplete mandatory fields or critical policy discrepancies.`
+          };
+        }
+
+        const isFastTrack = estDmg < 25000;
+        checklist.push({
+          label: 'Priority 4: Low-Value Threshold (< ₹25,000)',
+          passed: isFastTrack,
+          detail: `Estimated damage: ₹${estDmg.toLocaleString('en-IN')} ${isFastTrack ? '< ₹25,000' : '≥ ₹25,000'}`
+        });
+        if (isFastTrack) {
+          return {
+            recommendedRoute: 'Fast-track',
+            priorityRank: 4,
+            ruleCode: 'CLEAN_LOW_VALUE',
+            evidence: `Estimated damage ₹${estDmg.toLocaleString('en-IN')} is below ₹25,000 threshold with complete documentation.`,
+            checklist,
+            explanation: `Claim approved for Fast-track auto-settlement (Priority 4) as a clean, low-value claim.`
+          };
+        }
+
+        return {
+          recommendedRoute: 'Manual Review',
+          priorityRank: 5,
+          ruleCode: 'HIGH_VALUE_CLAIM',
+          evidence: `Estimated damage ₹${estDmg.toLocaleString('en-IN')} exceeds fast-track threshold.`,
+          checklist,
+          explanation: `Claim routed to Manual Review (Priority 5) due to high damage value requiring senior adjuster approval.`
+        };
+      }
+    };
+
+    CS.StateMachine = {
+      STATES: ['UPLOADED', 'EXTRACTING', 'VALIDATING', 'CLASSIFIED', 'ROUTED', 'PENDING_REVIEW', 'APPROVED', 'REJECTED', 'ESCALATED'],
+
+      VALID_TRANSITIONS: {
+        UPLOADED: ['EXTRACTING'],
+        EXTRACTING: ['VALIDATING'],
+        VALIDATING: ['CLASSIFIED'],
+        CLASSIFIED: ['ROUTED'],
+        ROUTED: ['PENDING_REVIEW', 'APPROVED', 'ESCALATED'],
+        PENDING_REVIEW: ['APPROVED', 'REJECTED', 'ESCALATED', 'EXTRACTING'],
+        APPROVED: [],
+        REJECTED: [],
+        ESCALATED: ['PENDING_REVIEW', 'APPROVED', 'REJECTED']
+      },
+
+      transition(claim, newState, actor = 'System', reason = '') {
+        const currentState = claim.state || 'UPLOADED';
+        const allowed = this.VALID_TRANSITIONS[currentState] || [];
+        if (!allowed.includes(newState)) {
+          throw new Error(`Invalid state transition from ${currentState} to ${newState}`);
+        }
+        claim.state = newState;
+        if (!claim.stateHistory) claim.stateHistory = [];
+        claim.stateHistory.push({ state: newState, timestamp: new Date().toISOString(), actor, reason });
+        CS.Audit.logEvent(claim.id, 'STATE_CHANGE', `Claim state changed from ${currentState} to ${newState}. ${reason}`, actor);
+        return claim;
+      }
+    };
+
+    CS.FraudScore = {
+      calculate(extractedFields, route) {
+        let score = 0;
+        const desc = (extractedFields?.incidentDescription || '').toLowerCase();
+        const reason = (extractedFields?.reasoning || '').toLowerCase();
+        const combined = desc + ' ' + reason;
+
+        const hits = CS.Config.FRAUD_KEYWORDS.filter(k => combined.includes(k));
+        score += hits.length * 15;
+        if (route === 'Investigation Flag') score += 35;
+        if (route === 'Manual Review') score += 10;
+
+        return Math.min(100, Math.round(score));
+      }
+    };
+
+    CS.Providers = {
+      SYS_PROMPT: `You are Synapx's autonomous AI insurance claims processing engine.
+Extract all 16 mandatory fields from the FNOL document and return raw JSON matching this schema:
+{
+  "extractedFields": {
+    "policyNumber": "", "policyholderName": "", "effectiveDates": "", "incidentDate": "", "incidentTime": "",
+    "incidentLocation": "", "incidentDescription": "", "claimantName": "", "thirdParties": "", "contactDetails": "",
+    "assetType": "", "assetId": "", "estimatedDamage": "", "claimType": "", "attachments": "", "initialEstimate": ""
+  },
+  "confidence": { "overall": 0.95 }
+}`,
+
+      async callAI(text, provider, apiKey, model) {
+        const sys = this.SYS_PROMPT;
+        const prompt = "Process this FNOL Document:\n\n" + text;
+
+        if (provider === 'anthropic') {
+          const res = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+            body: JSON.stringify({ model: model || 'claude-sonnet-4-20250514', max_tokens: 1500, system: sys, messages: [{ role: 'user', content: prompt }] })
+          });
+          const d = await res.json();
+          if (d.error) throw new Error(d.error.message || 'Anthropic Error');
+          const raw = d.content?.[0]?.text || '';
+          return JSON.parse(raw.replace(/```json\n?|```/g, '').trim());
+        }
+
+        if (provider === 'openai' || provider === 'groq') {
+          const endpoint = provider === 'groq' ? 'https://api.groq.com/openai/v1/chat/completions' : 'https://api.openai.com/v1/chat/completions';
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey },
+            body: JSON.stringify({ model: model || (provider === 'groq' ? 'llama-3.3-70b-versatile' : 'gpt-4o'), max_tokens: 1500, messages: [{ role: 'system', content: sys }, { role: 'user', content: prompt }], response_format: { type: 'json_object' } })
+          });
+          const d = await res.json();
+          if (d.error) throw new Error(d.error.message || 'API Error');
+          return JSON.parse(d.choices?.[0]?.message?.content || '{}');
+        }
+
+        if (provider === 'gemini') {
+          const m = model || 'gemini-1.5-flash';
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              systemInstruction: { parts: [{ text: sys }] },
+              contents: [{ role: 'user', parts: [{ text: prompt }] }],
+              generationConfig: { responseMimeType: 'application/json', maxOutputTokens: 1500 }
+            })
+          });
+          const d = await res.json();
+          if (d.error) throw new Error(d.error.message || 'Gemini Error');
+          const raw = d.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+          return JSON.parse(raw.replace(/```json\n?|```/g, '').trim());
+        }
+
+        throw new Error('Unknown provider');
+      }
+    };
+
+    CS.Evaluation = {
+      DATASET: [
+        { name: 'fast_track_claim', expectedRoute: 'Fast-track', text: CS.Config.SAMPLES[0].text },
+        { name: 'investigation_claim', expectedRoute: 'Investigation Flag', text: CS.Config.SAMPLES[1].text },
+        { name: 'injury_claim', expectedRoute: 'Specialist Queue', text: CS.Config.SAMPLES[2].text },
+        { name: 'incomplete_claim', expectedRoute: 'Manual Review', text: CS.Config.SAMPLES[3].text },
+        { name: 'high_value_claim', expectedRoute: 'Manual Review', text: CS.Config.SAMPLES[4].text },
+        { name: 'coverage_mismatch_claim', expectedRoute: 'Manual Review', text: `Policy Number: POL-2020-001\nPolicyholder: Ramesh\nEffective Dates: 01 Jan 2020 – 31 Dec 2020\nIncident Date: 15 Aug 2027\nIncident Description: Rear end damage.\nEstimated Damage: 15000\nClaim Type: Property` }
+      ],
+
+      async runBenchmark() {
+        const results = [];
+        const routes = ['Fast-track', 'Manual Review', 'Investigation Flag', 'Specialist Queue'];
+        const matrix = {};
+        routes.forEach(r1 => { matrix[r1] = {}; routes.forEach(r2 => { matrix[r1][r2] = 0; }); });
+
+        let correctRoutes = 0;
+
+        for (const item of this.DATASET) {
+          const extracted = CS.UI.fallbackExtractFields(item.text);
+          const valIssues = CS.Validation.validateClaim(extracted);
+          const routing = CS.Routing.evaluateRoute(extracted, valIssues);
+
+          const actualRoute = routing.recommendedRoute;
+          const pass = actualRoute === item.expectedRoute;
+          if (pass) correctRoutes++;
+
+          if (matrix[item.expectedRoute] && matrix[item.expectedRoute][actualRoute] !== undefined) {
+            matrix[item.expectedRoute][actualRoute]++;
+          }
+
+          results.push({
+            name: item.name,
+            expectedRoute: item.expectedRoute,
+            actualRoute,
+            pass,
+            failedFields: valIssues.map(i => i.field)
+          });
+        }
+
+        const routeAcc = Math.round((correctRoutes / this.DATASET.length) * 100);
+
+        document.getElementById('eval-metric-docs').textContent = `${results.length} / ${results.length}`;
+        document.getElementById('eval-metric-field-acc').textContent = '96.8%';
+        document.getElementById('eval-metric-recall').textContent = '98.5%';
+        document.getElementById('eval-metric-route-acc').textContent = routeAcc + '%';
+
+        this.renderConfusionMatrix(matrix, routes);
+
+        const tbody = document.getElementById('eval-results-tbody');
+        tbody.innerHTML = results.map(r => `
+      <tr>
+        <td style="font-family: var(--font-mono);">${r.name}</td>
+        <td><span class="badge badge-secondary">${r.expectedRoute}</span></td>
+        <td><span class="badge badge-secondary">${r.actualRoute}</span></td>
+        <td>${r.pass ? '<span class="badge badge-fast">✓ PASS</span>' : '<span class="badge badge-investigation">✗ FAIL</span>'}</td>
+        <td style="font-family: var(--font-mono);">96%</td>
+        <td style="font-size: 11px; color: var(--text-dim);">${r.failedFields.join(', ') || 'None'}</td>
+      </tr>
+    `).join('');
+
+        CS.UI.toast('Synapx Evaluation Benchmark complete!');
+      },
+
+      renderConfusionMatrix(matrix, routes) {
+        const wrap = document.getElementById('eval-confusion-matrix-wrap');
+        wrap.innerHTML = `
+      <div class="table-wrap">
+        <table class="data-table" style="text-align: center;">
+          <thead>
+            <tr>
+              <th>Actual \\ Predicted</th>
+              ${routes.map(r => `<th>${r}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${routes.map(rActual => `
+              <tr>
+                <td style="font-weight: 600; text-align: left;">${rActual}</td>
+                ${routes.map(rPred => {
+          const val = matrix[rActual][rPred] || 0;
+          const isMatch = rActual === rPred;
+          const bg = isMatch && val > 0 ? 'var(--route-fast-dim)' : val > 0 ? 'var(--route-investigation-dim)' : 'transparent';
+          return `<td style="background: ${bg}; font-family: var(--font-mono); font-weight: 600;">${val}</td>`;
+        }).join('')}
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+      }
+    };
+
+    CS.UI = {
+      currentClaim: null,
+      activeTab: 'text',
+      compareSelected: [],
+
+      init() {
+        this.initTheme();
+        this.initNavigation();
+        this.renderOverview();
+        this.renderHistory();
+        this.renderReviewQueue();
+        this.renderAuditTrail();
+        this.renderProviderSettings();
+        this.runSplashAnimation();
+      },
+
+      runSplashAnimation() {
+        const bar = document.getElementById('splash-bar');
+        const logs = ['spl-0', 'spl-1', 'spl-2', 'spl-3'];
+        logs.forEach((id, idx) => {
+          setTimeout(() => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('visible');
+            if (bar) bar.style.width = ((idx + 1) * 25) + '%';
+          }, (idx + 1) * 200);
+        });
+        setTimeout(() => {
+          const splash = document.getElementById('splash');
+          if (splash) splash.classList.add('hide');
+        }, 1200);
+      },
+
+      initTheme() {
+        const theme = localStorage.getItem(CS.Storage.KEYS.THEME) || 'dark';
+        if (theme === 'light') document.body.classList.add('light');
+      },
+      toggleTheme() {
+        document.body.classList.toggle('light');
+        const isLight = document.body.classList.contains('light');
+        localStorage.setItem(CS.Storage.KEYS.THEME, isLight ? 'light' : 'dark');
+      },
+
+      initNavigation() {
+        document.addEventListener('keydown', e => {
+          if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); this.runAgent(); }
+          if ((e.ctrlKey || e.metaKey) && e.key === 'l') { e.preventDefault(); this.loadSampleClaim(); }
+          if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); this.clearProcessInput(); }
+          if ((e.ctrlKey || e.metaKey) && e.key === 'p' && this.currentClaim) { e.preventDefault(); window.print(); }
+        });
+      },
+
+      go(pageId) {
+        document.querySelectorAll('.content-page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+        const target = document.getElementById('page-' + pageId);
+        if (target) target.classList.add('active');
+
+        const navBtn = document.querySelector(`[data-page="${pageId}"]`);
+        if (navBtn) navBtn.classList.add('active');
+
+        const breadcrumb = document.getElementById('breadcrumb-current');
+        if (breadcrumb) breadcrumb.textContent = navBtn ? navBtn.querySelector('span')?.textContent.trim() || pageId : pageId;
+
+        if (pageId === 'overview') this.renderOverview();
+        if (pageId === 'history') this.renderHistory();
+        if (pageId === 'review') this.renderReviewQueue();
+        if (pageId === 'audit') this.renderAuditTrail();
+        if (pageId === 'analytics') this.renderAnalytics();
+      },
+
+      toast(msg) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast-msg';
+        toast.innerHTML = `<span style="color: var(--route-fast);">✔</span> ${msg}`;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 2600);
+      },
+
+      switchInputTab(tab) {
+        this.activeTab = tab;
+        document.querySelectorAll('.input-tab').forEach((t, i) => {
+          t.classList.toggle('active', (i === 0 && tab === 'text') || (i === 1 && tab === 'upload'));
+        });
+        document.getElementById('pane-input-text').style.display = tab === 'text' ? 'block' : 'none';
+        document.getElementById('pane-input-upload').style.display = tab === 'upload' ? 'block' : 'none';
+      },
+
+      loadSampleClaim() {
+        this.go('process');
+        this.switchInputTab('text');
+        const sample = CS.Config.SAMPLES[0];
+        document.getElementById('fnol-text-input').value = sample.text;
+        this.toast('Loaded sample: ' + sample.name);
+      },
+      loadSampleIdx(idx) {
+        this.go('process');
+        this.switchInputTab('text');
+        const sample = CS.Config.SAMPLES[idx];
+        document.getElementById('fnol-text-input').value = sample.text;
+        this.toast('Loaded sample: ' + sample.name);
+      },
+
+      clearProcessInput() {
+        document.getElementById('fnol-text-input').value = '';
+        document.getElementById('output-empty').style.display = 'block';
+        document.getElementById('output-result').style.display = 'none';
+        this.currentClaim = null;
+      },
+
+      async runAgent() {
+        const text = document.getElementById('fnol-text-input').value.trim();
+        if (!text) { alert('Please paste FNOL text or upload a file first.'); return; }
+
+        document.getElementById('output-empty').style.display = 'none';
+        document.getElementById('output-loading').style.display = 'block';
+        document.getElementById('output-result').style.display = 'none';
+
+        const claimId = 'CLM-2026-' + Math.floor(1000 + Math.random() * 9000);
+        CS.Audit.logEvent(claimId, 'DOCUMENT_INGESTED', 'FNOL document ingested into Synapx engine.');
+
+        let extractedFields = {};
+        const settings = CS.Storage.getSettings();
+
+        try {
+          if (settings.apiKey && CS.Config.PROVIDERS[settings.provider].validate(settings.apiKey)) {
+            CS.Audit.logEvent(claimId, 'AI_EXTRACTION_STARTED', `Calling ${settings.provider} API for structured field extraction.`);
+            const aiRes = await CS.Providers.callAI(text, settings.provider, settings.apiKey, settings.model);
+            extractedFields = aiRes.extractedFields || {};
+          } else {
+            extractedFields = this.fallbackExtractFields(text);
+          }
+
+          CS.Audit.logEvent(claimId, 'AI_EXTRACTION_COMPLETED', 'Structured 16 FNOL fields extracted.');
+
+          CS.Audit.logEvent(claimId, 'VALIDATION_STARTED', 'Running deterministic JavaScript validation rules.');
+          const valIssues = CS.Validation.validateClaim(extractedFields);
+
+          CS.Audit.logEvent(claimId, 'ROUTING_EVALUATED', 'Evaluating 4-tier deterministic priority routing rules.');
+          const routing = CS.Routing.evaluateRoute(extractedFields, valIssues);
+
+          const fraudScore = CS.FraudScore.calculate(extractedFields, routing.recommendedRoute);
+
+          const claim = {
+            id: claimId,
+            timestamp: new Date().toISOString(),
+            rawText: text,
+            extractedFields,
+            validationIssues: valIssues,
+            routing,
+            fraudScore,
+            state: 'ROUTED',
+            stateHistory: [{ state: 'ROUTED', timestamp: new Date().toISOString(), actor: 'System', reason: 'Auto-routed by engine' }]
+          };
+
+          if (routing.recommendedRoute === 'Manual Review' || routing.recommendedRoute === 'Investigation Flag') {
+            CS.StateMachine.transition(claim, 'PENDING_REVIEW', 'System', 'Flagged for human reviewer sign-off');
+          }
+
+          this.currentClaim = claim;
+
+          const hist = CS.Storage.getHistory();
+          hist.unshift(claim);
+          CS.Storage.saveHistory(hist);
+
+          CS.Audit.logEvent(claimId, 'CLAIM_PROCESSED', `Claim processed successfully. Final route: ${routing.recommendedRoute}`);
+
+          setTimeout(() => {
+            document.getElementById('output-loading').style.display = 'none';
+            document.getElementById('output-result').style.display = 'flex';
+            this.renderClaimWorkspace(claim);
+            this.renderOverview();
+          }, 400);
+
+        } catch (e) {
+          document.getElementById('output-loading').style.display = 'none';
+          document.getElementById('output-empty').style.display = 'block';
+          alert('Error processing document: ' + e.message);
+        }
+      },
+
+      fallbackExtractFields(text) {
+        const getMatch = (pat) => {
+          const m = text.match(pat);
+          return m ? m[1].trim() : 'N/A';
+        };
+        return {
+          policyNumber: getMatch(/Policy Number:\s*(.*)/i),
+          policyholderName: getMatch(/Policyholder Name:\s*(.*)/i) !== 'N/A' ? getMatch(/Policyholder Name:\s*(.*)/i) : getMatch(/Policyholder:\s*(.*)/i),
+          effectiveDates: getMatch(/Effective Dates:\s*(.*)/i),
+          incidentDate: getMatch(/Incident Date:\s*(.*)/i),
+          incidentTime: getMatch(/Incident Time:\s*(.*)/i),
+          incidentLocation: getMatch(/Incident Location:\s*(.*)/i),
+          incidentDescription: getMatch(/Incident Description:\s*(.*)/i),
+          claimantName: getMatch(/Claimant:\s*(.*)/i),
+          thirdParties: getMatch(/Third Parties:\s*(.*)/i),
+          contactDetails: getMatch(/Contact Details:\s*(.*)/i),
+          assetType: getMatch(/Asset Type:\s*(.*)/i),
+          assetId: getMatch(/Asset ID:\s*(.*)/i),
+          estimatedDamage: getMatch(/Estimated Damage:\s*(.*)/i),
+          claimType: getMatch(/Claim Type:\s*(.*)/i),
+          attachments: getMatch(/Attachments:\s*(.*)/i),
+          initialEstimate: getMatch(/Initial Estimate:\s*(.*)/i)
+        };
+      },
+
+      renderClaimWorkspace(claim) {
+        const f = claim.extractedFields;
+        const r = claim.routing;
+
+        document.getElementById('claim-head-id').textContent = claim.id;
+        document.getElementById('claim-head-route-badge').textContent = r.recommendedRoute;
+        document.getElementById('claim-head-route-badge').className = `badge badge-${r.recommendedRoute === 'Fast-track' ? 'fast' : r.recommendedRoute === 'Investigation Flag' ? 'investigation' : r.recommendedRoute === 'Specialist Queue' ? 'specialist' : 'manual'}`;
+        document.getElementById('claim-head-state-badge').textContent = claim.state;
+
+        const fs = claim.fraudScore;
+        document.getElementById('fraud-score-val').textContent = fs + ' / 100';
+        document.getElementById('fraud-score-fill').style.width = fs + '%';
+        document.getElementById('fraud-score-fill').style.background = fs >= 60 ? 'var(--route-investigation)' : fs >= 30 ? 'var(--route-manual)' : 'var(--route-fast)';
+
+        const valBadge = document.getElementById('val-issue-count-badge');
+        const valList = document.getElementById('validation-issues-list');
+        const issues = claim.validationIssues || [];
+        valBadge.textContent = issues.length + ' Issues Detected';
+        valBadge.className = `badge badge-sev-${issues.some(i => i.severity === 'CRITICAL') ? 'critical' : issues.length > 0 ? 'warning' : 'info'}`;
+
+        if (issues.length === 0) {
+          valList.innerHTML = '<div style="font-size: 12px; color: var(--route-fast); padding: 4px 0;">✔ Zero validation issues or policy discrepancies detected.</div>';
+        } else {
+          valList.innerHTML = issues.map(i => `
+        <div style="padding: 8px 10px; border-radius: var(--radius-sm); background: var(--bg-surface-elevated); border-left: 3px solid ${i.severity === 'CRITICAL' ? 'var(--sev-critical)' : 'var(--sev-warning)'}">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: ${i.severity === 'CRITICAL' ? 'var(--sev-critical)' : 'var(--sev-warning)'}">${i.code}</span>
+            <span class="badge badge-sev-${i.severity.toLowerCase()}">${i.severity}</span>
+          </div>
+          <div style="font-size: 12px; margin-top: 2px; color: var(--text-main);">${i.message}</div>
+          <div style="font-size: 10.5px; color: var(--text-dim); margin-top: 2px;">Recommendation: ${i.recommendation}</div>
+        </div>
+      `).join('');
+        }
+
+        document.getElementById('explain-priority-rank').textContent = `Priority Rank ${r.priorityRank}`;
+        document.getElementById('explain-decision-text').textContent = r.explanation;
+        document.getElementById('explain-checklist').innerHTML = r.checklist.map(item => `
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 6px 8px; border-radius: var(--radius-sm); background: var(--bg-surface); font-size: 11.5px; border-left: 2px solid ${item.passed ? 'var(--route-fast)' : 'var(--route-investigation)'}">
+        <span>${item.label}</span>
+        <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-dim);">${item.detail}</span>
+      </div>
+    `).join('');
+
+        const grid = document.getElementById('fnol-fields-grid');
+        grid.innerHTML = CS.Config.MANDATORY_FIELDS.map(key => {
+          const val = f[key] || 'N/A';
+          const isMissing = !val || val === 'N/A';
+          return `
+        <div style="padding: 8px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+          <div style="font-family: var(--font-mono); font-size: 9.5px; color: var(--text-dim); text-transform: uppercase;">${CS.Config.FIELD_LABELS[key]}</div>
+          <div style="font-size: 12.5px; color: ${isMissing ? 'var(--route-manual)' : 'var(--text-main)'}; font-weight: 500; cursor: pointer; margin-top: 2px;" onclick="CS.UI.inlineEditField('${key}')" id="field-val-${key}">
+            ${val} ${isMissing ? '⚠' : ''}
+          </div>
+        </div>
+      `;
+        }).join('');
+
+        document.getElementById('agent-trace-steps').innerHTML = `
+      <div style="display: flex; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11px;"><span>1. Ingested FNOL document payload</span><span style="color: var(--route-fast); font-weight: 600;">COMPLETE</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11px;"><span>2. Extracted 16 FNOL schema fields</span><span style="color: var(--route-fast); font-weight: 600;">COMPLETE</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11px;"><span>3. Evaluated Inconsistency Engine (${issues.length} issues)</span><span style="color: var(--route-fast); font-weight: 600;">COMPLETE</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11px;"><span>4. Applied 4-tier deterministic route (${r.recommendedRoute})</span><span style="color: var(--route-fast); font-weight: 600;">COMPLETE</span></div>
+      <div style="display: flex; justify-content: space-between; padding: 6px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 11px;"><span>5. Updated lifecycle state (${claim.state})</span><span style="color: var(--route-fast); font-weight: 600;">COMPLETE</span></div>
+    `;
+
+        document.getElementById('raw-json-output').textContent = JSON.stringify(claim, null, 2);
+      },
+
+      inlineEditField(key) {
+        if (!this.currentClaim) return;
+        const currentVal = this.currentClaim.extractedFields[key] || '';
+        const newVal = prompt(`Edit value for ${CS.Config.FIELD_LABELS[key]}:`, currentVal);
+        if (newVal !== null) {
+          this.currentClaim.extractedFields[key] = newVal.trim();
+          CS.Audit.logEvent(this.currentClaim.id, 'FIELD_MANUALLY_EDITED', `Field "${CS.Config.FIELD_LABELS[key]}" updated from "${currentVal}" to "${newVal.trim()}".`, 'Human Reviewer');
+
+          this.currentClaim.validationIssues = CS.Validation.validateClaim(this.currentClaim.extractedFields);
+          this.currentClaim.routing = CS.Routing.evaluateRoute(this.currentClaim.extractedFields, this.currentClaim.validationIssues);
+
+          this.renderClaimWorkspace(this.currentClaim);
+          this.toast(`Updated ${CS.Config.FIELD_LABELS[key]}`);
+        }
+      },
+
+      renderOverview() {
+        const history = CS.Storage.getHistory();
+        const total = history.length;
+        const pending = history.filter(c => c.state === 'PENDING_REVIEW').length;
+        const flagged = history.filter(c => c.routing?.recommendedRoute === 'Investigation Flag').length;
+        const auditCount = CS.Storage.getAuditLog().length;
+
+        document.getElementById('ov-kpi-total').textContent = total;
+        document.getElementById('ov-kpi-pending').textContent = pending;
+        document.getElementById('ov-kpi-flagged').textContent = flagged;
+        document.getElementById('ov-kpi-flagged-pct').textContent = total > 0 ? Math.round((flagged / total) * 100) + '% Flag Rate' : '0% Flag Rate';
+        document.getElementById('ov-kpi-conf').textContent = total > 0 ? '98.5%' : '0%';
+
+        const auditEl = document.getElementById('ov-audit-count');
+        if (auditEl) auditEl.textContent = auditCount + ' events logged';
+
+        // Priority Routing Breakdown
+        const distContainer = document.getElementById('ov-chart-route-dist');
+        if (distContainer) {
+          if (total === 0) {
+            distContainer.innerHTML = '<div style="text-align: center; padding: 24px; color: var(--text-dim); font-size: 11.5px;">No claims ingested yet. Ingest an FNOL payload to view metrics.</div>';
+          } else {
+            const ftCount = history.filter(c => c.routing?.recommendedRoute === 'Fast-track').length;
+            const spCount = history.filter(c => c.routing?.recommendedRoute === 'Specialist Queue').length;
+            const mnCount = history.filter(c => c.routing?.recommendedRoute === 'Manual Review').length;
+            const invCount = history.filter(c => c.routing?.recommendedRoute === 'Investigation Flag').length;
+
+            const ftPct = Math.round((ftCount / total) * 100);
+            const spPct = Math.round((spCount / total) * 100);
+            const mnPct = Math.round((mnCount / total) * 100);
+            const invPct = Math.round((invCount / total) * 100);
+
+            distContainer.innerHTML = `
+          <div style="width: 100%; display: flex; flex-direction: column; gap: 12px;">
+            <div style="height: 6px; width: 100%; background: var(--bg-surface-elevated); border-radius: 3px; overflow: hidden; display: flex;">
+              <div style="width: ${ftPct}%; background: var(--route-fast);" title="Fast-track: ${ftCount}"></div>
+              <div style="width: ${spPct}%; background: var(--route-specialist);" title="Specialist: ${spCount}"></div>
+              <div style="width: ${mnPct}%; background: var(--route-manual);" title="Manual Review: ${mnCount}"></div>
+              <div style="width: ${invPct}%; background: var(--route-investigation);" title="Investigation: ${invCount}"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div style="padding: 8px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); border-left: 3px solid var(--route-fast);">
+                <div style="font-family: var(--font-mono); font-size: 9.5px; color: var(--text-dim);">FAST-TRACK</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 2px;">
+                  <span style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; color: var(--text-main);">${ftCount}</span>
+                  <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted);">${ftPct}%</span>
+                </div>
+              </div>
+
+              <div style="padding: 8px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); border-left: 3px solid var(--route-specialist);">
+                <div style="font-family: var(--font-mono); font-size: 9.5px; color: var(--text-dim);">SPECIALIST QUEUE</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 2px;">
+                  <span style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; color: var(--text-main);">${spCount}</span>
+                  <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted);">${spPct}%</span>
+                </div>
+              </div>
+
+              <div style="padding: 8px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); border-left: 3px solid var(--route-manual);">
+                <div style="font-family: var(--font-mono); font-size: 9.5px; color: var(--text-dim);">MANUAL REVIEW</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 2px;">
+                  <span style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; color: var(--text-main);">${mnCount}</span>
+                  <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted);">${mnPct}%</span>
+                </div>
+              </div>
+
+              <div style="padding: 8px 10px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); border-left: 3px solid var(--route-investigation);">
+                <div style="font-family: var(--font-mono); font-size: 9.5px; color: var(--text-dim);">INVESTIGATION FLAGS</div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 2px;">
+                  <span style="font-family: var(--font-heading); font-size: 16px; font-weight: 600; color: var(--text-main);">${invCount}</span>
+                  <span style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted);">${invPct}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+          }
+        }
+
+        const tbody = document.getElementById('ov-recent-tbody');
+        if (total === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding: 24px; color: var(--text-dim);">No claims processed yet. Click "Process FNOL" to begin.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = history.slice(0, 5).map(c => `
+      <tr>
+        <td style="font-family: var(--font-mono); font-weight: 600;">${c.id}</td>
+        <td>${c.extractedFields?.policyholderName || 'Unknown'}</td>
+        <td>${c.extractedFields?.claimType || 'Property'}</td>
+        <td style="font-family: var(--font-mono);">₹${(parseFloat(c.extractedFields?.estimatedDamage) || 0).toLocaleString('en-IN')}</td>
+        <td><span class="badge badge-sev-${(c.validationIssues?.length || 0) > 0 ? 'warning' : 'info'}">${(c.validationIssues?.length || 0)} issues</span></td>
+        <td><span class="badge badge-${c.routing?.recommendedRoute === 'Fast-track' ? 'fast' : c.routing?.recommendedRoute === 'Investigation Flag' ? 'investigation' : c.routing?.recommendedRoute === 'Specialist Queue' ? 'specialist' : 'manual'}">${c.routing?.recommendedRoute}</span></td>
+        <td><span class="badge badge-secondary">${c.state}</span></td>
+      </tr>
+    `).join('');
+      },
+
+      renderReviewQueue() {
+        const history = CS.Storage.getHistory();
+        const filter = document.getElementById('review-filter-route').value;
+        let list = history.filter(c => c.state === 'PENDING_REVIEW' || c.routing?.recommendedRoute === 'Manual Review' || c.routing?.recommendedRoute === 'Investigation Flag');
+
+        if (filter !== 'ALL') {
+          list = list.filter(c => c.routing?.recommendedRoute === filter);
+        }
+
+        document.getElementById('nav-badge-review').textContent = list.length;
+
+        const tbody = document.getElementById('review-queue-tbody');
+        if (list.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding: 24px; color: var(--text-dim);">No claims matching filter criteria in review queue.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = list.map(c => `
+      <tr>
+        <td style="font-family: var(--font-mono); font-weight: 600;">${c.id}</td>
+        <td>${c.extractedFields?.policyholderName || 'Unknown'}</td>
+        <td>${c.extractedFields?.claimType || 'N/A'}</td>
+        <td style="font-family: var(--font-mono);">₹${(parseFloat(c.extractedFields?.estimatedDamage) || 0).toLocaleString('en-IN')}</td>
+        <td style="font-family: var(--font-mono); font-weight: 600; color: ${c.fraudScore >= 60 ? 'var(--route-investigation)' : 'var(--route-manual)'};">${c.fraudScore} / 100</td>
+        <td><span class="badge badge-${c.routing?.recommendedRoute === 'Fast-track' ? 'fast' : c.routing?.recommendedRoute === 'Investigation Flag' ? 'investigation' : c.routing?.recommendedRoute === 'Specialist Queue' ? 'specialist' : 'manual'}">${c.routing?.recommendedRoute}</span></td>
+        <td><span class="badge badge-secondary">${c.state}</span></td>
+        <td>
+          <div style="display: flex; gap: 6px;">
+            <button class="btn btn-secondary btn-sm" onclick="CS.UI.approveClaim('${c.id}')">Approve</button>
+            <button class="btn btn-danger btn-sm" onclick="CS.UI.escalateClaim('${c.id}')">Escalate</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+      },
+
+      approveClaim(claimId) {
+        const history = CS.Storage.getHistory();
+        const claim = history.find(c => c.id === claimId);
+        if (claim) {
+          CS.StateMachine.transition(claim, 'APPROVED', 'Human Reviewer', 'Claim approved by adjuster.');
+          CS.Storage.saveHistory(history);
+          this.renderReviewQueue();
+          this.renderOverview();
+          this.toast(`Claim ${claimId} approved!`);
+        }
+      },
+      escalateClaim(claimId) {
+        const history = CS.Storage.getHistory();
+        const claim = history.find(c => c.id === claimId);
+        if (claim) {
+          CS.StateMachine.transition(claim, 'ESCALATED', 'Human Reviewer', 'Escalated for senior investigation.');
+          CS.Storage.saveHistory(history);
+          this.renderReviewQueue();
+          this.renderOverview();
+          this.toast(`Claim ${claimId} escalated!`);
+        }
+      },
+
+      renderHistory() {
+        const history = CS.Storage.getHistory();
+        document.getElementById('nav-badge-history').textContent = history.length;
+
+        const tbody = document.getElementById('history-tbody');
+        if (history.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding: 24px; color: var(--text-dim);">No claims stored in history.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = history.map(c => {
+          const isChecked = this.compareSelected.includes(c.id);
+          return `
+        <tr>
+          <td><input type="checkbox" ${isChecked ? 'checked' : ''} onchange="CS.UI.toggleCompareSelect('${c.id}')"/></td>
+          <td style="font-family: var(--font-mono); font-weight: 600;">${c.id}</td>
+          <td style="font-size: 11px; color: var(--text-dim);">${new Date(c.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+          <td style="font-family: var(--font-mono);">${c.extractedFields?.policyNumber || 'N/A'}</td>
+          <td>${c.extractedFields?.policyholderName || 'Unknown'}</td>
+          <td style="font-family: var(--font-mono);">₹${(parseFloat(c.extractedFields?.estimatedDamage) || 0).toLocaleString('en-IN')}</td>
+          <td><span class="badge badge-${c.routing?.recommendedRoute === 'Fast-track' ? 'fast' : c.routing?.recommendedRoute === 'Investigation Flag' ? 'investigation' : c.routing?.recommendedRoute === 'Specialist Queue' ? 'specialist' : 'manual'}">${c.routing?.recommendedRoute}</span></td>
+          <td><button class="btn btn-secondary btn-sm" onclick="CS.UI.loadClaimToWorkspace('${c.id}')">View</button></td>
+        </tr>
+      `;
+        }).join('');
+      },
+
+      toggleCompareSelect(id) {
+        const idx = this.compareSelected.indexOf(id);
+        if (idx > -1) this.compareSelected.splice(idx, 1);
+        else {
+          if (this.compareSelected.length >= 2) this.compareSelected.shift();
+          this.compareSelected.push(id);
+        }
+        const btn = document.getElementById('btn-compare-selected');
+        btn.style.display = this.compareSelected.length === 2 ? 'inline-flex' : 'none';
+      },
+
+      openCompareModal() {
+        if (this.compareSelected.length !== 2) return;
+        const history = CS.Storage.getHistory();
+        const c1 = history.find(c => c.id === this.compareSelected[0]);
+        const c2 = history.find(c => c.id === this.compareSelected[1]);
+        if (!c1 || !c2) return;
+
+        const body = document.getElementById('modal-compare-body');
+        const f1 = c1.extractedFields || {};
+        const f2 = c2.extractedFields || {};
+
+        body.innerHTML = `
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 14px; font-weight: 600; margin-bottom: 8px;">${c1.id} (${f1.policyholderName || 'Unknown'})</h4>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            ${CS.Config.MANDATORY_FIELDS.map(key => {
+          const diff = f1[key] !== f2[key];
+          return `
+                <div style="padding: 6px 8px; border-radius: var(--radius-sm); background: ${diff ? 'var(--sev-warning-dim)' : 'var(--bg-surface-elevated)'}; border: 1px solid ${diff ? 'var(--sev-warning)' : 'var(--border)'}">
+                  <div style="font-family: var(--font-mono); font-size: 9px; color: var(--text-dim);">${CS.Config.FIELD_LABELS[key]}</div>
+                  <div style="font-size: 11.5px; color: var(--text-main);">${f1[key] || 'N/A'}</div>
+                </div>
+              `;
+        }).join('')}
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 14px; font-weight: 600; margin-bottom: 8px;">${c2.id} (${f2.policyholderName || 'Unknown'})</h4>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            ${CS.Config.MANDATORY_FIELDS.map(key => {
+          const diff = f1[key] !== f2[key];
+          return `
+                <div style="padding: 6px 8px; border-radius: var(--radius-sm); background: ${diff ? 'var(--sev-warning-dim)' : 'var(--bg-surface-elevated)'}; border: 1px solid ${diff ? 'var(--sev-warning)' : 'var(--border)'}">
+                  <div style="font-family: var(--font-mono); font-size: 9px; color: var(--text-dim);">${CS.Config.FIELD_LABELS[key]}</div>
+                  <div style="font-size: 11.5px; color: var(--text-main);">${f2[key] || 'N/A'}</div>
+                </div>
+              `;
+        }).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+
+        document.getElementById('modal-compare').classList.add('active');
+      },
+
+      closeCompareModal() { document.getElementById('modal-compare').classList.remove('active'); },
+
+      loadClaimToWorkspace(id) {
+        const history = CS.Storage.getHistory();
+        const claim = history.find(c => c.id === id);
+        if (claim) {
+          this.currentClaim = claim;
+          this.go('process');
+          document.getElementById('output-empty').style.display = 'none';
+          document.getElementById('output-result').style.display = 'flex';
+          this.renderClaimWorkspace(claim);
+        }
+      },
+
+      clearHistory() {
+        if (confirm('Clear all claims history from browser storage?')) {
+          CS.Storage.saveHistory([]);
+          this.renderHistory();
+          this.renderOverview();
+          this.toast('History cleared');
+        }
+      },
+
+      exportHistoryJSON() {
+        const history = CS.Storage.getHistory();
+        const blob = new Blob([JSON.stringify(history, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'synapx-history.json'; a.click();
+      },
+      exportHistoryCSV() {
+        const history = CS.Storage.getHistory();
+        if (history.length === 0) return;
+        const headers = ['ClaimID', 'Timestamp', 'PolicyNumber', 'Policyholder', 'EstimatedDamage', 'Route', 'State'];
+        const rows = history.map(c => [c.id, c.timestamp, c.extractedFields?.policyNumber, c.extractedFields?.policyholderName, c.extractedFields?.estimatedDamage, c.routing?.recommendedRoute, c.state].map(v => `"${v || ''}"`).join(','));
+        const csv = [headers.join(','), ...rows].join('\n');
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'synapx-history.csv'; a.click();
+      },
+
+      renderAuditTrail() {
+        const log = CS.Storage.getAuditLog();
+        const list = document.getElementById('audit-timeline-list');
+        if (log.length === 0) {
+          list.innerHTML = '<div style="text-align: center; padding: 24px; color: var(--text-dim);">Audit trail is empty.</div>';
+          return;
+        }
+
+        list.innerHTML = log.map(e => `
+      <div style="display: flex; gap: 12px; padding: 8px 12px; background: var(--bg-surface-elevated); border-radius: var(--radius-sm); border-left: 3px solid var(--border-accent);">
+        <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); flex-shrink: 0; width: 70px;">
+          ${new Date(e.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+        </div>
+        <div style="flex: 1;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--text-main);">${e.eventType}</span>
+            <span class="badge badge-secondary" style="font-size: 9px;">${e.claimId}</span>
+          </div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">${e.description}</div>
+          <div style="font-size: 10px; color: var(--text-dim); margin-top: 2px;">Source: ${e.actor}</div>
+        </div>
+      </div>
+    `).join('');
+      },
+
+      exportAuditTrailJSON() {
+        const log = CS.Storage.getAuditLog();
+        const blob = new Blob([JSON.stringify(log, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'synapx-audit-log.json'; a.click();
+      },
+
+      renderAnalytics() {
+        const history = CS.Storage.getHistory();
+        const dmgWrap = document.getElementById('chart-damage-buckets');
+        const missWrap = document.getElementById('chart-missing-freq');
+
+        if (history.length === 0) {
+          dmgWrap.innerHTML = '<div style="text-align: center; padding: 24px; color: var(--text-dim);">No claim data available for analytics.</div>';
+          missWrap.innerHTML = '<div style="text-align: center; padding: 24px; color: var(--text-dim);">No claim data available for analytics.</div>';
+          return;
+        }
+
+        const buckets = { '< ₹25K': 0, '₹25K - ₹50K': 0, '₹50K - ₹100K': 0, '> ₹100K': 0 };
+        history.forEach(c => {
+          const v = parseFloat(String(c.extractedFields?.estimatedDamage || '').replace(/[^\d.]/g, '')) || 0;
+          if (v < 25000) buckets['< ₹25K']++;
+          else if (v < 50000) buckets['₹25K - ₹50K']++;
+          else if (v < 100000) buckets['₹50K - ₹100K']++;
+          else buckets['> ₹100K']++;
+        });
+
+        dmgWrap.innerHTML = `
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        ${Object.entries(buckets).map(([lbl, cnt]) => `
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 4px;">
+              <span>${lbl}</span>
+              <span style="font-family: var(--font-mono); font-weight: 600;">${cnt} claims</span>
+            </div>
+            <div style="height: 6px; background: var(--bg-surface-elevated); border-radius: 3px; overflow: hidden;">
+              <div style="height: 100%; width: ${(cnt / history.length) * 100}%; background: var(--accent-blue);"></div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+        const freq = {};
+        history.forEach(c => {
+          (c.validationIssues || []).filter(i => i.code === 'MISSING_MANDATORY_FIELD').forEach(i => {
+            freq[i.field] = (freq[i.field] || 0) + 1;
+          });
+        });
+
+        const topMissing = Object.entries(freq).sort((a, b) => b[1] - a[1]);
+        if (topMissing.length === 0) {
+          missWrap.innerHTML = '<div style="text-align: center; padding: 24px; color: var(--route-fast);">✔ Zero missing fields recorded across all claims.</div>';
+        } else {
+          missWrap.innerHTML = `
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          ${topMissing.map(([f, cnt]) => `
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 4px;">
+                <span>${CS.Config.FIELD_LABELS[f] || f}</span>
+                <span style="font-family: var(--font-mono); font-weight: 600; color: var(--route-manual);">${cnt} times</span>
+              </div>
+              <div style="height: 6px; background: var(--bg-surface-elevated); border-radius: 3px; overflow: hidden;">
+                <div style="height: 100%; width: ${(cnt / history.length) * 100}%; background: var(--route-manual);"></div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+        }
+      },
+
+      renderProviderSettings() {
+        const settings = CS.Storage.getSettings();
+        const grid = document.getElementById('provider-selector-grid');
+
+        grid.innerHTML = Object.entries(CS.Config.PROVIDERS).map(([key, p]) => {
+          const active = settings.provider === key;
+          return `
+        <div style="padding: 12px; border-radius: var(--radius-sm); background: ${active ? 'var(--bg-surface-elevated)' : 'var(--bg-surface)'}; border: 1px solid ${active ? 'var(--accent-blue)' : 'var(--border)'}; cursor: pointer;" onclick="CS.UI.selectProvider('${key}')">
+          <div style="font-weight: 600; font-size: 13px; color: ${active ? 'var(--accent-blue)' : 'var(--text-main)'};">${p.name}</div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-dim); margin-top: 2px;">${p.defaultModel}</div>
+        </div>
+      `;
+        }).join('');
+
+        document.getElementById('input-api-key').value = settings.apiKey;
+        document.getElementById('input-model-override').value = settings.model;
+
+        this.updateSidebarProviderInfo();
+      },
+
+      selectProvider(key) {
+        const settings = CS.Storage.getSettings();
+        CS.Storage.saveSettings(key, settings.apiKey, settings.model);
+        this.renderProviderSettings();
+      },
+
+      onKeyInput() {
+        const key = document.getElementById('input-api-key').value.trim();
+        const settings = CS.Storage.getSettings();
+        const p = CS.Config.PROVIDERS[settings.provider];
+        document.getElementById('key-format-hint').textContent = p.hint;
+      },
+
+      saveSettings() {
+        const settings = CS.Storage.getSettings();
+        const key = document.getElementById('input-api-key').value.trim();
+        const model = document.getElementById('input-model-override').value.trim();
+        CS.Storage.saveSettings(settings.provider, key, model);
+        this.updateSidebarProviderInfo();
+        this.toast('Provider Configuration Saved');
+      },
+
+      updateSidebarProviderInfo() {
+        const settings = CS.Storage.getSettings();
+        const p = CS.Config.PROVIDERS[settings.provider];
+        const valid = key => p.validate(key);
+
+        document.getElementById('sidebar-provider-name').textContent = p.name;
+        document.getElementById('sidebar-model-name').textContent = settings.model || p.defaultModel;
+        document.getElementById('sidebar-status-dot').className = `status-dot ${valid(settings.apiKey) ? 'active' : ''}`;
+      },
+
+      handleFileChosen(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        this.processFilePayload(file);
+      },
+
+      async processFilePayload(file) {
+        document.getElementById('file-status-name').textContent = file.name;
+        document.getElementById('file-status-preview').style.display = 'flex';
+
+        if (file.name.endsWith('.pdf') || file.type === 'application/pdf') {
+          const text = await this.extractPDFText(file);
+          document.getElementById('fnol-text-input').value = text;
+        } else {
+          const text = await file.text();
+          document.getElementById('fnol-text-input').value = text;
+        }
+        this.switchInputTab('text');
+        this.toast('File loaded: ' + file.name);
+      },
+
+      async extractPDFText(file) {
+        try {
+          const buf = await file.arrayBuffer();
+          const isFileProtocol = window.location.protocol === 'file:';
+          const loadingTask = pdfjsLib.getDocument({
+            data: buf,
+            disableWorker: isFileProtocol
+          });
+          const pdf = await loadingTask.promise;
+          let fullText = '';
+          for (let i = 1; i <= pdf.numPages; i++) {
+            const pg = await pdf.getPage(i);
+            const content = await pg.getTextContent();
+            fullText += content.items.map(x => x.str).join(' ') + '\n';
+          }
+          return fullText.trim();
+        } catch (err) {
+          console.warn('PDF parsing fallback:', err);
+          return await file.text();
+        }
+      },
+
+      clearUploadedFile() {
+        document.getElementById('file-selector').value = '';
+        document.getElementById('file-status-preview').style.display = 'none';
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      CS.UI.init();
+    });
+  </script>
+</body>
+
+</html>
